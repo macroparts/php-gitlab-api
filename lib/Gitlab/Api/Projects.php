@@ -341,6 +341,17 @@ class Projects extends AbstractApi
      *
      * @return mixed
      */
+    public function approvals($project_id)
+    {
+        return $this->get($this->getProjectPath($project_id, 'approvals'));
+    }
+
+    /**
+     * @param int $project_id
+     * @param array $parameters
+     *
+     * @return mixed
+     */
     public function hooks($project_id, array $parameters = [])
     {
         $resolver = $this->createOptionsResolver();

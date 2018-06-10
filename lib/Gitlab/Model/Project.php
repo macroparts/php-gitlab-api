@@ -191,6 +191,21 @@ class Project extends AbstractModel
     }
 
     /**
+     * @param string $username_query
+     * @return User[]
+     */
+    public function approvers()
+    {
+        $data = $this->client->projects()->approvals($this->id);
+        $approvers = array();
+        foreach ($data['approvers'] as $member) {
+            $approvers[] = User::fromArray($this->getClient(), $member);
+        }
+
+        return $approvers;
+    }
+
+    /**
      * @param int $user_id
      * @return User
      */
